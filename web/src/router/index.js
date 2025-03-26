@@ -1,24 +1,51 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+
+import NotFoundView from "@/views/error/NotFoundView.vue"
+import PkIndexView from "@/views/pk/PkIndextView.vue"
+import RecordIndexView from "@/views/record/RecordIndexView.vue"
+import RankListIndexView from "@/views/ranklist/RankListIndexView.vue"
+import UserBotIndexView from "@/views/user/bot/UserBotIndexView.vue"
+
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "home",
+    redirect: "/pk/"
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: "/pk/",
+    name: "pk_index",
+    component: PkIndexView,
+  },
+  {
+    path: "/ranklist/",
+    name: "ranklist_index",
+    component: RankListIndexView,
+  },
+  {
+    path: "/record/",
+    name: "record_index",
+    component: RecordIndexView,
+  },
+  {
+    path: "/user/bot/",
+    name: "user_bot_index",
+    component: UserBotIndexView,
+  },
+  {
+    path: "/404/",
+    name: "404",
+    component: NotFoundView,
+  },
+  {
+    path: "/:catchAll(.*)",
+    redirect: "/404/"
   }
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 
