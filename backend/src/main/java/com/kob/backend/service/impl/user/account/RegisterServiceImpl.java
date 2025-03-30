@@ -57,7 +57,7 @@ public class RegisterServiceImpl implements RegisterService {
             return map;
         }
 
-        QueryWrapper<User> queryWrapper = new QueryWrapper<User>();
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
         List<User> users = userMapper.selectList(queryWrapper);
         if (!users.isEmpty()) {
@@ -67,7 +67,7 @@ public class RegisterServiceImpl implements RegisterService {
 
         String encodedPassword = passwordEncoder.encode(password);
         String photo = "https://cdn.acwing.com/media/user/profile/photo/450127_lg_da0516e621.jpg";
-        User user = new User(null, username, password, photo);
+        User user = new User(null, username, encodedPassword, photo);
         userMapper.insert(user);
 
         map.put("error_message", "success");
