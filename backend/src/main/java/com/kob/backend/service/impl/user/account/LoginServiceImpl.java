@@ -23,17 +23,17 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public Map<String, String> getToken(String username, String password) {
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(username, password); //将用户名和密码进行封装
-        //传入封装之后的加密字符串进行验证登录
+                new UsernamePasswordAuthenticationToken(username, password);
+
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);  //登录失败会自动处理
 
 
         UserDetailsImpl loginUser = (UserDetailsImpl) authenticate.getPrincipal();
         User user = loginUser.getUser();
-        String jwt = JwtUtil.createJWT(user.getId().toString()); //将user的id封装成一个jwt
+        String jwt = JwtUtil.createJWT(user.getId().toString());
 
         Map<String, String> map = new HashMap<>();
-        map.put("error_message", "success");  //成功之后返回结果，并传递jwt
+        map.put("error_message", "success");
         map.put("token", jwt);
 
 
