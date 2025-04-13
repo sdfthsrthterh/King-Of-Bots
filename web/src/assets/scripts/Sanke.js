@@ -74,10 +74,6 @@ export class Sanke extends AcGameObject {
             this.cells[i] = JSON.parse(JSON.stringify(this.cells[i - 1]));
         }
 
-        if (!this.gamemap.check_valid(this.next_cell)) {  //如果下一个格子发生不合法情况，则判断蛇当场去世
-            this.status = "die";
-        }
-
     }
 
     update_move() {
