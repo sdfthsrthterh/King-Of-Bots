@@ -3,7 +3,7 @@ import { Cell } from "./Cell";
 
 
 
-export class Sanke extends AcGameObject {
+export class Snake extends AcGameObject {
     constructor(info, gamemap) {
         super();
 

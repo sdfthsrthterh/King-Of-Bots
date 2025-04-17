@@ -1,6 +1,6 @@
 import { AcGameObject } from "./AcGameObject";
 import { Wall } from "./Wall";
-import { Sanke } from "./Sanke";
+import { Snake } from "./Snake";
 
 export class GameMap extends AcGameObject {
     constructor(ctx, parent, store) {
@@ -20,8 +20,8 @@ export class GameMap extends AcGameObject {
         this.walls = [];
 
         this.snakes = [
-            new Sanke({id: 0, color: "#8EC0E4", r: this.rows - 2, c: 1}, this),
-            new Sanke({id: 1, color: "#ed317f", r: 1, c: this.cols - 2}, this),
+            new Snake({id: 0, color: "#8EC0E4", r: this.rows - 2, c: 1}, this),
+            new Snake({id: 1, color: "#ed317f", r: 1, c: this.cols - 2}, this),
         ];
 
     }
