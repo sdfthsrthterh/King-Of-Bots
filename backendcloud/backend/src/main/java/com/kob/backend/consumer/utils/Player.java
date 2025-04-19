@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Player {
     private Integer id;
+    private Integer botId; //-1表示人为操作
+    private String botCode;
     private Integer sx;
     private Integer sy;
     private List<Integer> steps;
@@ -37,7 +39,7 @@ public class Player {
             y += dy[d];
             res.add(new Cell(x, y));
             if (!check_tail_increasing( ++ step)) {
-                res.remove(x);
+                res.remove(0);
             }
         }
         return res;
