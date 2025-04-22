@@ -22,6 +22,7 @@ export default {
         const socketUrl = `ws://127.0.0.1:3000/websocket/${store.state.user.token}/`;
 
         store.commit("updateLoser", "none");
+        store.commit("updateIsRecord", false); //打开pk页面则将参数设置为不是录像
 
         let socket = null;
         onMounted(() => {
