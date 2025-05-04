@@ -52,7 +52,7 @@ export default {
         const click_match_btn = () => {
             if (match_btn_info.value === "开始匹配") {
                 match_btn_info.value = "取消";
-                console.log(select_bot.value);
+                //console.log(select_bot.value);
                 store.state.pk.socket.send(JSON.stringify({  //使用socket的API向后端发送请求(将JSON封装成字符串)
                     event: "start-matching",
                     bot_id: select_bot.value,

@@ -49,7 +49,7 @@ export class GameMap extends AcGameObject {
         if (this.store.state.record.is_record) {
             let k = 0;
 
-            console.log(this.store.state.record);
+            //console.log(this.store.state.record);
 
             const [snake0, snake1] = this.snakes;
             const a_steps = this.store.state.record.a_steps;

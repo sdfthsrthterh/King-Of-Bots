@@ -1,14 +1,12 @@
 <template>
-
-    <div class="game-body">
-      <MenuView v-if="$store.state.router.router_name === 'menu'"/>
-      <PkIndexViewVue v-else-if="$store.state.router.router_name === 'pk'"/>
-      <RecordIndexViewVue v-else-if="$store.state.router.router_name === 'record'"/>
-      <RecordContentViewVue v-else-if="$store.state.router.router_name === 'record_content'"/>
-      <RanklistIndexViewVue v-else-if="$store.state.router.router_name === 'ranklist'"/>
-      <UserBotIndexViewVue v-else-if="$store.state.router.router_name === 'user_bot'"/>
-    </div>
-
+  <div class="game-body">
+    <MenuView v-if="$store.state.router.router_name === 'menu'"/>
+    <PkIndexViewVue v-else-if="$store.state.router.router_name === 'pk'"/>
+    <RecordIndexViewVue v-else-if="$store.state.router.router_name === 'record'"/>
+    <RecordContentViewVue v-else-if="$store.state.router.router_name === 'record_content'"/>
+    <RanklistIndexViewVue v-else-if="$store.state.router.router_name === 'ranklist'"/>
+    <UserBotIndexViewVue v-else-if="$store.state.router.router_name === 'user_bot'"/>
+  </div>
 </template>
 
 <script>  //写js代码
