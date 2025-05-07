@@ -18,6 +18,7 @@ import RecordIndexViewVue from './views/record/RecordIndexView.vue'
 import RecordContentViewVue from './views/record/RecordContentView.vue'
 import RanklistIndexViewVue from './views/ranklist/RanklistIndexView.vue'
 import UserBotIndexViewVue from './views/user/bot/UserBotIndexView.vue'
+import $ from 'jquery'
 
 
 export default {
@@ -30,21 +31,35 @@ export default {
     UserBotIndexViewVue,
   },
   setup() {
+
     const store = useStore();
-    const jwt_token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkOTExMTBlNTUxYTE0M2Y5YTIwZTExYTlhYzY3MTRmMiIsInN1YiI6IjEiLCJpc3MiOiJzZyIsImlhdCI6MTc0NTc1OTUyOCwiZXhwIjoxNzQ2OTY5MTI4fQ.jbmsjvEoOy9C8a2VlKgtFWxhyIBydMKgG1UKsm1Wvb4";
-        if (jwt_token) {
-            store.commit("updateToken", jwt_token);
-            store.dispatch("getinfo", {
-                success() {
-                    store.commit("updatePullingInfo", false);
-                },
-                error() {
-                    store.commit("updatePullingInfo", false);
-                }
-            })
+
+    $.ajax({
+      url: "https://app7253.acapp.acwing.com.cn/api/user/account/acwing/acapp/apply_code/",
+      type: "get",
+      success: resp => {
+        if (resp.result === "success") {
+          store.state.user.AcWingOS.api.oauth2.authorize(resp.appid, resp.redirect_uri, resp.scope, resp.state, resp => {
+            if (resp.result === "success") {
+              const jwt_token = resp.jwt_token;
+              store.commit("updateToken", jwt_token);
+              store.dispatch("getinfo", {
+                  success() {
+                      store.commit("updatePullingInfo", false);
+                  },
+                  error() {
+                      store.commit("updatePullingInfo", false);
+                  }
+              })
+            } else {
+              store.state.user.AcWingOS.api.window.close();
+            }
+          });
         } else {
-            store.commit("updatePullingInfo", false);
+          store.state.user.AcWingOS.api.window.close();
         }
+      }
+    });
   }
 }
 </script>
